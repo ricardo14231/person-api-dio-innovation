@@ -8,9 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-@RequestMapping("createPerson")
+@RequestMapping("person")
 public class PersonController {
 
     private PersonService personService;
@@ -20,9 +21,15 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @PostMapping
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public MessageRespondeDTO createPerson(@RequestBody @Valid PersonDTO personDTO){
         return personService.createPerson(personDTO);
+    }
+
+    @GetMapping("/listAll")
+    @ResponseStatus(HttpStatus.OK)
+    public List<PersonDTO> listAllPerson() {
+        return personService.listAllPerson();
     }
 }
