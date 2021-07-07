@@ -41,7 +41,7 @@ public class PersonController {
     }
 
     @PutMapping("/update/{id}")
-    public MessageRespondeDTO updatePerson(@PathVariable @Valid Long id, @RequestBody PersonDTO personDTO) throws PersonNotFoundException {
+    public MessageResponseDTO updatePerson(@PathVariable @Valid Long id, @RequestBody PersonDTO personDTO) throws PersonNotFoundException {
         return personService.updatePerson(id, personDTO);
     }
 
