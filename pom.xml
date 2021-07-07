@@ -14,7 +14,6 @@
 	<name>demo</name>
 	<description>Person API Project </description>
 	<properties>
-		<java.version>11</java.version>
 		<org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
 	</properties>
 	<dependencies>
@@ -84,7 +83,7 @@
 						<path>
 							<groupId>org.mapstruct</groupId>
 							<artifactId>mapstruct-processor</artifactId>
-							<version>1.4.1.Final</version>
+							<version>${org.mapstruct.version}</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
