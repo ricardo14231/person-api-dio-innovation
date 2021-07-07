@@ -1,7 +1,7 @@
 package one.digital.innovation.personapi.service;
 
 import one.digital.innovation.personapi.dto.request.PersonDTO;
-import one.digital.innovation.personapi.dto.response.MessageRespondeDTO;
+import one.digital.innovation.personapi.dto.response.MessageResponseDTO;
 import one.digital.innovation.personapi.entity.Person;
 import one.digital.innovation.personapi.exception.PersonNotFoundException;
 import one.digital.innovation.personapi.mapper.PersonMapper;
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,11 +24,11 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public MessageRespondeDTO createPerson(PersonDTO personDTO){
+    public MessageResponseDTO createPerson(PersonDTO personDTO){
         Person personToSave = personMapper.toModel(personDTO);
 
         Person savePerson = personRepository.save(personToSave);
-        return MessageRespondeDTO
+        return MessageResponseDTO
                 .builder()
                 .message("Pessoa adicionada com ID: " + savePerson.getId())
                 .build();
