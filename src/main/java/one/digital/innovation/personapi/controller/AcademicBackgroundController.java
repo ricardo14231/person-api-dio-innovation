@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("academic")
 public class AcademicBackgroundController {
@@ -18,5 +20,11 @@ public class AcademicBackgroundController {
     @ResponseStatus(HttpStatus.CREATED)
     public MessageResponseDTO createAcademicBackground(@RequestBody AcademicBackgroundDTO academicBackgroundDTO) {
         return academicBackgroundService.createAcademicBackground(academicBackgroundDTO);
+    }
+
+    @GetMapping("/listAll")
+    @ResponseStatus(HttpStatus.OK)
+    public List<AcademicBackgroundDTO> listAllAcademicBackgroud() {
+        return academicBackgroundService.listAllAcademicBackgroud();
     }
 }

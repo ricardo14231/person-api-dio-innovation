@@ -8,6 +8,9 @@ import one.digital.innovation.personapi.repository.AcademicBackgroundRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class AcademicBackgroundService {
 
@@ -22,6 +25,14 @@ public class AcademicBackgroundService {
         AcademicBackground academicSave = academicBackgroundRepository.save(academicBackground);
 
         return createMessageResponse(academicSave.getId(), "Formação acadêmica adicionada.");
+    }
+
+    public List<AcademicBackgroundDTO> listAllAcademicBackgroud() {
+        List<AcademicBackground> academicBackgrounds = academicBackgroundRepository.findAll();
+
+        return academicBackgrounds.stream()
+                .map(academic -> academicBackgroundMapper.toDTO(academic))
+                .collect(Collectors.toList());
     }
 
     private MessageResponseDTO createMessageResponse(Long id, String msg) {
