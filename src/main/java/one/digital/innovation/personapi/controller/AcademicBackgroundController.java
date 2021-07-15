@@ -27,4 +27,11 @@ public class AcademicBackgroundController {
     public List<AcademicBackgroundDTO> listAllAcademicBackgroud() {
         return academicBackgroundService.listAllAcademicBackgroud();
     }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public AcademicBackgroundDTO findByIdAcademicBackground(@PathVariable Long id) {
+        return academicBackgroundService.findByIdAcademicBackground(id);
+    }
+
 }

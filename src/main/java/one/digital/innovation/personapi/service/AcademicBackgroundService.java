@@ -3,12 +3,14 @@ package one.digital.innovation.personapi.service;
 import one.digital.innovation.personapi.dto.request.AcademicBackgroundDTO;
 import one.digital.innovation.personapi.dto.response.MessageResponseDTO;
 import one.digital.innovation.personapi.entity.AcademicBackground;
+import one.digital.innovation.personapi.exception.AcademicNoSuchElementException;
 import one.digital.innovation.personapi.mapper.AcademicBackgroundMapper;
 import one.digital.innovation.personapi.repository.AcademicBackgroundRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,10 +37,23 @@ public class AcademicBackgroundService {
                 .collect(Collectors.toList());
     }
 
+    public AcademicBackgroundDTO findByIdAcademicBackground(Long id) {
+        AcademicBackground academicBackground = verifyIfExists(id);
+
+        return academicBackgroundMapper.toDTO(academicBackground);
+
+    }
+
+    private AcademicBackground verifyIfExists(Long id) {
+        return academicBackgroundRepository.findById(id)
+                .orElseThrow(() -> new AcademicNoSuchElementException(id));
+    }
+
     private MessageResponseDTO createMessageResponse(Long id, String msg) {
         return MessageResponseDTO
                 .builder()
                 .message(msg + " " + id)
                 .build();
     }
+
 }
