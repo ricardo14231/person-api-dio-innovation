@@ -5,35 +5,25 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonDTO {
+public class AcademicBackgroundDTO {
 
     private Long id;
 
     @NotEmpty
-    @Size(min = 2, max = 50)
-    private String fullName;
+    @Size(min = 5, max = 150)
+    private String nameInstitution;
 
     @NotEmpty
-    private String age;
-
-    @Size(max = 10)
-    private String maritalStatus;
-
-    @Valid
-    @NotEmpty
-    private List<PhoneDTO> phones;
+    private String startDate;
 
     @NotEmpty
-    @Email
-    private String email;
+    private String endDate;
+
 }
