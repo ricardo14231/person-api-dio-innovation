@@ -21,17 +21,18 @@ public class Person {
     private Long id;
 
     @Column(nullable = false, length = 50)
-    private String firstName;
+    private String fullName;
 
-    @Column(nullable = false, length = 80)
-    private String lastName;
+    @Column(nullable = false)
+    private LocalDate age;
 
-    @Column(nullable = false, unique = true, length = 15)
-    private String cpf;
-
-    private LocalDate birthDate;
+    @Column(length = 10)
+    private String maritalStatus;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Phone> phones;
+
+    @Column(nullable = false, unique = true, length = 15)
+    private String email;
 
 }
