@@ -20,13 +20,13 @@ public class PersonDTO {
     private Long id;
 
     @NotEmpty
-    @Size(min = 2, max = 50)
+    @Size(min = 3, max = 80)
     private String fullName;
 
     @NotEmpty
-    private String age;
+    private String dateBirth;
 
-    @Size(max = 10)
+    @Size(max = 15)
     private String maritalStatus;
 
     @Valid

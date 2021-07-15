@@ -14,7 +14,7 @@
 	<name>demo</name>
 	<description>Person API Project </description>
 	<properties>
-		<org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
+		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -58,7 +58,7 @@
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
-			<version>1.4.1.Final</version>
+			<version>${org.mapstruct.version}</version>
 		</dependency>
 	</dependencies>
 

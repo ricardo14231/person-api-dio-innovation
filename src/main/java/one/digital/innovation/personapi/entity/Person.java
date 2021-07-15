@@ -20,19 +20,19 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 80)
     private String fullName;
 
     @Column(nullable = false)
-    private LocalDate age;
+    private LocalDate dateBirth;
 
-    @Column(length = 10)
+    @Column(length = 15)
     private String maritalStatus;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Phone> phones;
 
-    @Column(nullable = false, unique = true, length = 15)
+    @Column(nullable = false, unique = true, length = 80)
     private String email;
 
 }
