@@ -33,4 +33,17 @@ public class WorkExperienceController {
         return workExperienceService.findByIdWorkExperience(id);
     }
 
+    @PutMapping("update/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MessageResponseDTO updateWorkExperience(@PathVariable Long id, @RequestBody WorkExperienceDTO workExperienceDTO) {
+        return workExperienceService.updateWorkExperience(id, workExperienceDTO);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteWorkExperience(@PathVariable Long id) {
+        workExperienceService.deleteWorkExperience(id);
+    }
+
+
 }

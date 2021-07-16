@@ -40,6 +40,21 @@ public class WorkExperienceService {
         return workExperienceMapper.toDTO(workExperience);
     }
 
+    public MessageResponseDTO updateWorkExperience(Long id, WorkExperienceDTO workExperienceDTO) {
+        verifyIfExists(id);
+
+        WorkExperience workExperienceSave = workExperienceMapper.toModel(workExperienceDTO);
+        workExperienceRepository.save(workExperienceSave);
+
+        return messageResponseDTO(workExperienceSave.getId(), "Experiência atualizada!");
+    }
+
+    public void deleteWorkExperience(Long id) {
+        verifyIfExists(id);
+
+        workExperienceRepository.deleteById(id);
+    }
+
 
     private WorkExperience verifyIfExists(Long id) {
         return workExperienceRepository.findById(id)
