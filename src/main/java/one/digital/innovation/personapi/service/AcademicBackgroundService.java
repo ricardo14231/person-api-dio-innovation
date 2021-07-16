@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,6 +42,13 @@ public class AcademicBackgroundService {
         return academicBackgroundMapper.toDTO(academicBackground);
 
     }
+
+    public void deleteAcademicBackground(Long id) {
+        verifyIfExists(id);
+
+        academicBackgroundRepository.deleteById(id);
+    }
+
 
     private AcademicBackground verifyIfExists(Long id) {
         return academicBackgroundRepository.findById(id)

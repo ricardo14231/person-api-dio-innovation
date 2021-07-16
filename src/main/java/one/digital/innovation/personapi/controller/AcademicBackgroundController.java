@@ -5,6 +5,7 @@ import one.digital.innovation.personapi.dto.response.MessageResponseDTO;
 import one.digital.innovation.personapi.service.AcademicBackgroundService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,5 +34,12 @@ public class AcademicBackgroundController {
     public AcademicBackgroundDTO findByIdAcademicBackground(@PathVariable Long id) {
         return academicBackgroundService.findByIdAcademicBackground(id);
     }
+
+    @DeleteMapping("delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteAcademicBackground(@PathVariable Long id) {
+        academicBackgroundService.deleteAcademicBackground(id);
+    }
+
 
 }
