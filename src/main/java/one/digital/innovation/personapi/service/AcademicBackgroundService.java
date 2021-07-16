@@ -43,6 +43,15 @@ public class AcademicBackgroundService {
 
     }
 
+    public MessageResponseDTO updateAcademicBackground(Long id, AcademicBackgroundDTO academicBackgroundDTO) {
+        verifyIfExists(id);
+
+        AcademicBackground academicBackgroundToSave = academicBackgroundMapper.toModel(academicBackgroundDTO);
+        academicBackgroundRepository.save(academicBackgroundToSave);
+
+        return createMessageResponse(academicBackgroundToSave.getId(), "Formação acadêmica atualizada.");
+    }
+
     public void deleteAcademicBackground(Long id) {
         verifyIfExists(id);
 

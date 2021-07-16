@@ -35,6 +35,12 @@ public class AcademicBackgroundController {
         return academicBackgroundService.findByIdAcademicBackground(id);
     }
 
+    @PutMapping("update/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MessageResponseDTO updateAcademicBackground(@PathVariable Long id, @RequestBody AcademicBackgroundDTO academicBackgroundDTO) {
+        return academicBackgroundService.updateAcademicBackground(id, academicBackgroundDTO);
+    }
+
     @DeleteMapping("delete/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteAcademicBackground(@PathVariable Long id) {
