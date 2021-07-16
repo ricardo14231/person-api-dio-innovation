@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("workExperience")
 public class WorkExperienceController {
@@ -18,6 +20,17 @@ public class WorkExperienceController {
     @ResponseStatus(HttpStatus.CREATED)
     public MessageResponseDTO createWorkExperience(@RequestBody WorkExperienceDTO workExperienceDTO) {
         return workExperienceService.createWorkExperience(workExperienceDTO);
+    }
+
+    @GetMapping("/list")
+    @ResponseStatus(HttpStatus.OK)
+    public List<WorkExperienceDTO> listAllWorkExperience() {
+        return workExperienceService.listAllWorkExperience();
+    }
+
+    @GetMapping("/{id}")
+    public WorkExperienceDTO findByIdWorkExperince(@PathVariable Long id) {
+        return workExperienceService.findByIdWorkExperience(id);
     }
 
 }
