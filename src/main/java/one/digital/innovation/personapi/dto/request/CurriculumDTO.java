@@ -16,13 +16,11 @@ public class CurriculumDTO {
 
     private Long id;
 
-    @NotEmpty
     private PersonDTO personalData;
 
     @NotEmpty
     private String objective;
 
-    @NotEmpty
     private List<AcademicBackgroundDTO> academicBackground;
 
     private List<WorkExperienceDTO> workExperience;

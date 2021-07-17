@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -24,7 +25,7 @@ public class PersonDTO {
     private String fullName;
 
     @NotEmpty
-    private String dateBirth;
+    private LocalDate dateBirth;
 
     @Size(max = 15)
     private String maritalStatus;
@@ -33,7 +34,7 @@ public class PersonDTO {
     @NotEmpty
     private List<PhoneDTO> phones;
 
+    @Email(message = "E-mail inválido!")
     @NotEmpty
-    @Email
     private String email;
 }

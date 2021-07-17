@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.NoSuchElementException;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class WorkExperienceNoSuchElementExpertion extends NoSuchElementException {
+public class CurriculumNoSuchElementExpertion extends NoSuchElementException {
 
-    public WorkExperienceNoSuchElementExpertion(Long id) {
-        super("Experiência de trabalho não encontrado! Id = " + id);
+    public CurriculumNoSuchElementExpertion(Long id) {
+        super("Currículo não encontrado! Id = " + id);
     }
 }
