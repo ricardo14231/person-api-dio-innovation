@@ -30,6 +30,7 @@ public class Person {
     private String maritalStatus;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(nullable = false)
     private List<Phone> phones;
 
     @Column(nullable = false, unique = true, length = 80)
