@@ -24,7 +24,7 @@ public class CurriculumService {
         Curriculum curriculumToSave = curriculumMapper.toModel(curriculumDTO);
         Curriculum curriculumSaved = curriculumRepository.save(curriculumToSave);
 
-        return createMessageDTO(curriculumSaved.getId(), "Curriculum com Id adicionado!");
+        return createMessageDTO(curriculumSaved.getId(), "Curriculum adicionado! ID:");
     }
 
     public List<CurriculumDTO> listaAllCurriculum() {

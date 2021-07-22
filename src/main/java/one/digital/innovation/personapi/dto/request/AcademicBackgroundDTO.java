@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -21,9 +22,9 @@ public class AcademicBackgroundDTO {
     private String nameInstitution;
 
     @NotEmpty
-    private String startDate;
+    private LocalDate startDate;
 
     @NotEmpty
-    private String endDate;
+    private LocalDate endDate;
 
 }

@@ -31,4 +31,5 @@ public class CurriculumDTO {
 
     private List<CourseDTO> course;
 
+
 }
