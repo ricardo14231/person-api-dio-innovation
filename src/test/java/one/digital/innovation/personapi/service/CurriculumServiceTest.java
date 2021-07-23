@@ -121,7 +121,7 @@ class CurriculumServiceTest {
         assertEquals(createExpectedMessageResponse(String.format("Curriculum com ID: %o deletado!", 1L)),
                 curriculumService.deleteCurriculum(1L));
     }
-    
+
     private MessageResponseDTO createExpectedMessageResponse(String msg) {
         return MessageResponseDTO.builder()
                 .message(msg)
