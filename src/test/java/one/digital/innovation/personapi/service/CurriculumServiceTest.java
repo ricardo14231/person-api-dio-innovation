@@ -28,11 +28,7 @@ class CurriculumServiceTest {
     private CurriculumService curriculumService;
 
     @Mock
-    private CurriculumMapper curriculumMapper;
-
-    @Mock
     private CurriculumRepository curriculumRepository;
-
 
     @Test
     @DisplayName("Deve retornar mensagem de sucesso ao criar o curriculum.")
@@ -41,11 +37,11 @@ class CurriculumServiceTest {
         CurriculumDTO curriculumDTO = CurriculumCreator.curriculumDTOBuilder();
         Curriculum expectedSavedCurriculum = CurriculumCreator.curriculumBuilder();
 
-        //when
         when(curriculumRepository.save(any(Curriculum.class))).thenReturn(expectedSavedCurriculum);
 
-        //then
-        MessageResponseDTO expectedSuccessfulMessage = createExpectedMessageResponse(expectedSavedCurriculum.getId(), "Curriculum adicionado! ID:");
+        MessageResponseDTO expectedSuccessfulMessage = createExpectedMessageResponse(String.format("Curriculum com ID: %o adicionado!",
+                expectedSavedCurriculum.getId()));
+
         MessageResponseDTO succesMessage = curriculumService.createCurriculum(curriculumDTO);
 
         assertEquals(expectedSuccessfulMessage, succesMessage);
@@ -56,10 +52,9 @@ class CurriculumServiceTest {
     void testGivenListAllCurriculumDTOThenReturnListOfCurriculum() {
         List<Curriculum> expectedCurriculumList = Collections.singletonList(CurriculumCreator.curriculumBuilder());
 
-        //when
         when(curriculumRepository.findAll()).thenReturn(expectedCurriculumList);
 
-        List<CurriculumDTO> expectedCurriculumDTOList = curriculumService.listaAllCurriculum();
+        List<CurriculumDTO> expectedCurriculumDTOList = curriculumService.listAllCurriculum();
 
         assertEquals(expectedCurriculumDTOList.get(0).getId(), expectedCurriculumList.get(0).getId());
 
@@ -68,7 +63,7 @@ class CurriculumServiceTest {
     @Test
     @DisplayName("Deve retornar uma lista vazia.")
     void testGivenListAllCurriculumDTOThenReturnListEmpty() {
-        List<CurriculumDTO> expectedCurriculumDTOList = curriculumService.listaAllCurriculum();
+        List<CurriculumDTO> expectedCurriculumDTOList = curriculumService.listAllCurriculum();
         assertTrue(expectedCurriculumDTOList.isEmpty());
     }
 
@@ -78,10 +73,9 @@ class CurriculumServiceTest {
         CurriculumDTO expectedCurriculumDTOWithId = CurriculumCreator.curriculumDTOWithIdBuilder();
         Curriculum saveCurriculum = CurriculumCreator.curriculumBuilder();
 
-        //when
         when(curriculumRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(saveCurriculum));
 
-        assertEquals(expectedCurriculumDTOWithId, curriculumService.findByIdCurriculum(saveCurriculum.getId()));
+        assertEquals(expectedCurriculumDTOWithId, curriculumService.findByIdCurriculum(1L));
     }
 
     @Test
@@ -106,7 +100,7 @@ class CurriculumServiceTest {
         when(curriculumRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(expectedCurriculumUpdate));
         when(curriculumRepository.save(any(Curriculum.class))).thenReturn(expectedCurriculumUpdate);
 
-        assertEquals(createExpectedMessageResponse(expectedCurriculumUpdate.getId(), "Curriculum com Id atualizado!"),
+        assertEquals(createExpectedMessageResponse(String.format("Curriculum com ID: %o atualizado!", expectedCurriculumUpdate.getId())),
                 curriculumService.updateCurriculum(curriculumDTOUpdate.getId(), curriculumDTOUpdate));
 
     }
@@ -121,18 +115,16 @@ class CurriculumServiceTest {
     @DisplayName("Deve retornar Mensagem de sucesso ao deletar um curriculum.")
     void testGivenDeleteCurriculumThenReturnMessageSuccessful() {
         Curriculum curriculum = CurriculumCreator.curriculumBuilder();
-        //when
-        when(curriculumRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(curriculum));
-        //when(curriculumRepository.deleteById(1L)).thenReturn(null);
 
-        assertEquals(createExpectedMessageResponse(1L, "Curriculum Deletado!"),
+        when(curriculumRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(curriculum));
+
+        assertEquals(createExpectedMessageResponse(String.format("Curriculum com ID: %o deletado!", 1L)),
                 curriculumService.deleteCurriculum(1L));
     }
-
-
-    private MessageResponseDTO createExpectedMessageResponse(Long id, String msg) {
+    
+    private MessageResponseDTO createExpectedMessageResponse(String msg) {
         return MessageResponseDTO.builder()
-                .message(msg + " " + id)
+                .message(msg)
                 .build();
     }
 }

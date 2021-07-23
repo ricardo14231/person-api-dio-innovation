@@ -24,10 +24,10 @@ public class CurriculumService {
         Curriculum curriculumToSave = curriculumMapper.toModel(curriculumDTO);
         Curriculum curriculumSaved = curriculumRepository.save(curriculumToSave);
 
-        return createMessageDTO(curriculumSaved.getId(), "Curriculum adicionado! ID:");
+        return createMessageDTO(String.format("Curriculum com ID: %o adicionado!", curriculumSaved.getId()));
     }
 
-    public List<CurriculumDTO> listaAllCurriculum() {
+    public List<CurriculumDTO> listAllCurriculum() {
         List<Curriculum> curriculumList = curriculumRepository.findAll();
         return curriculumList.stream()
                 .map(c -> curriculumMapper.toDTO(c))
@@ -45,13 +45,13 @@ public class CurriculumService {
         Curriculum curriculumSaved = curriculumMapper.toModel(curriculumDTO);
         curriculumRepository.save(curriculumSaved);
 
-        return createMessageDTO(curriculumSaved.getId(), "Curriculum com Id atualizado!");
+        return createMessageDTO(String.format("Curriculum com ID: %o atualizado!", curriculumSaved.getId()));
     }
 
     public MessageResponseDTO deleteCurriculum(Long id) {
         verifyIfExists(id);
         curriculumRepository.deleteById(id);
-        return createMessageDTO(id, "Curriculum Deletado!");
+        return createMessageDTO(String.format("Curriculum com ID: %o deletado!", id));
     }
 
     private Curriculum verifyIfExists(Long id) {
@@ -60,10 +60,10 @@ public class CurriculumService {
         return curriculum;
     }
 
-    private MessageResponseDTO createMessageDTO(Long id, String msg) {
+    private MessageResponseDTO createMessageDTO(String msg) {
         return MessageResponseDTO
                 .builder()
-                .message(msg + " " + id)
+                .message(msg)
                 .build();
     }
 

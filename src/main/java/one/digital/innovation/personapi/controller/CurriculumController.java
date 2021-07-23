@@ -27,7 +27,7 @@ public class CurriculumController {
     @GetMapping("/list")
     @ResponseStatus(HttpStatus.OK)
     public List<CurriculumDTO> listAllCurriculum() {
-        return curriculumService.listaAllCurriculum();
+        return curriculumService.listAllCurriculum();
     }
 
     @GetMapping("/{id}")
