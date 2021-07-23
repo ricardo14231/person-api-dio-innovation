@@ -31,9 +31,9 @@ public class CurriculumCreator {
 
     private List<CourseDTO> course;
 
-    public static List<CurriculumCreator> createListCurriculumBuilder() {
-        return  Arrays.asList(
-                CurriculumCreator.builder()
+    public static CurriculumDTO curriculumDTOWithIdBuilder() {
+        return  CurriculumDTO.builder()
+                .id(1L)
                     .personalData(
                         PersonDTO.builder()
                             .id(1L)
@@ -77,10 +77,10 @@ public class CurriculumCreator {
                             .institutionName("DIO INNOVATION")
                             .courseTitle("JAVA")
                             .build()))
-                .build());
+                .build();
     }
 
-    public static Curriculum createCurriculumBuilder() {
+    public static Curriculum curriculumBuilder() {
         return  Curriculum.builder()
                     .id(1L)
                     .personalData(
@@ -129,7 +129,7 @@ public class CurriculumCreator {
                     .build();
     }
 
-    public static CurriculumDTO createCurriculumDTOBuilder() {
+    public static CurriculumDTO curriculumDTOBuilder() {
         return  CurriculumDTO.builder()
                 .personalData(
                         PersonDTO.builder()
@@ -170,4 +170,39 @@ public class CurriculumCreator {
                                 .build()))
                 .build();
     }
+
+    public static CurriculumDTO updateCurriculumDTOWithIdBuilder() {
+        return  CurriculumDTO.builder()
+                .id(1L)
+                .personalData(
+                        PersonDTO.builder()
+                                .id(1L)
+                                .fullName("José Francisco")
+                                .email("updateTeste@gmail.com")
+                                .build())
+                .workExperience(Arrays.asList(
+                        WorkExperienceDTO.builder()
+                                .id(1L)
+                                .companyName("Empresa update")
+                                .build()))
+                .build();
+    }
+
+    public static Curriculum updateCurriculumBuilder() {
+        return  Curriculum.builder()
+                .id(1L)
+                .personalData(
+                        Person.builder()
+                                .id(1L)
+                                .fullName("José Francisco")
+                                .email("updateTeste@gmail.com")
+                                .build())
+                .workExperience(Arrays.asList(
+                        WorkExperience.builder()
+                                .id(1L)
+                                .companyName("Empresa update")
+                                .build()))
+                .build();
+    }
+
 }

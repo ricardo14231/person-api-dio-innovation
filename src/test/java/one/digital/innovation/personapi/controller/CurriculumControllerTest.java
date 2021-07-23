@@ -1,9 +1,8 @@
 package one.digital.innovation.personapi.controller;
 
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
-@ExtendWith(SpringExtension.class)
+@WebMvcTest
 class CurriculumControllerTest {
 
 
