@@ -20,7 +20,6 @@ public class CurriculumController {
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public MessageResponseDTO createCurriculum(@RequestBody @Valid CurriculumDTO curriculumDTO) {
-        System.out.println(curriculumDTO);
         return curriculumService.createCurriculum(curriculumDTO);
     }
 

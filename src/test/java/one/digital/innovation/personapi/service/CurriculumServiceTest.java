@@ -3,7 +3,6 @@ package one.digital.innovation.personapi.service;
 import one.digital.innovation.personapi.dto.request.CurriculumDTO;
 import one.digital.innovation.personapi.dto.response.MessageResponseDTO;
 import one.digital.innovation.personapi.entity.Curriculum;
-import one.digital.innovation.personapi.mapper.CurriculumMapper;
 import one.digital.innovation.personapi.repository.CurriculumRepository;
 import one.digital.innovation.personapi.utils.CurriculumCreator;
 import org.junit.jupiter.api.DisplayName;
@@ -107,7 +106,7 @@ class CurriculumServiceTest {
 
     @Test
     @DisplayName("Deve retornar NoSuchElementException quando tentar deletar um curriculum que não existe.")
-    void testGivenDeleteCurriculumNotFouldThenReturnNoSuchElementException() {
+    void testGivenDeleteCurriculumNotFoundThenReturnNoSuchElementException() {
         assertThrows(NoSuchElementException.class, () -> curriculumService.deleteCurriculum(1L));
     }
 

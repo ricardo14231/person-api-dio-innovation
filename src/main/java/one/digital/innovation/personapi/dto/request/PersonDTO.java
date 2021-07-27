@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
@@ -24,7 +25,7 @@ public class PersonDTO {
     @Size(min = 3, max = 80)
     private String fullName;
 
-    @NotEmpty
+    @NotNull
     private LocalDate dateBirth;
 
     @Size(max = 15)
