@@ -7,7 +7,7 @@ Está API foi proposto a partir do projeto de gerenciamento de pessoas desenvolv
 
 Foram feitas algumas alterações na atividade sugerida, a fim de representar um modelo de dados de um Curriculum Vitae.   
 
-## Pré requisitos para executar o projeto:
+## Pré-requisitos para executar o projeto:
 
 Java: 11 ou superior
 Maven: 3.8.1
