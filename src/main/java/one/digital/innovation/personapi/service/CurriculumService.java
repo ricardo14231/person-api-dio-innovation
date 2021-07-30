@@ -7,6 +7,7 @@ import one.digital.innovation.personapi.exception.CurriculumNoSuchElementExperti
 import one.digital.innovation.personapi.mapper.CurriculumMapper;
 import one.digital.innovation.personapi.repository.CurriculumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,9 +23,15 @@ public class CurriculumService {
 
     public MessageResponseDTO createCurriculum(CurriculumDTO curriculumDTO) {
         Curriculum curriculumToSave = curriculumMapper.toModel(curriculumDTO);
-        Curriculum curriculumSaved = curriculumRepository.save(curriculumToSave);
+        Curriculum curriculumSaved;
 
-        return createMessageDTO(String.format("Curriculum com ID: %o adicionado!", curriculumSaved.getId()));
+        try {
+            curriculumSaved = curriculumRepository.save(curriculumToSave);
+            return createMessageDTO(String.format("Curriculum com ID: %o adicionado!", curriculumSaved.getId()));
+
+        }catch (DataIntegrityViolationException e) {
+            return createMessageDTO("Erro ao criar o curriculum!!! " + e.getMessage());
+        }
     }
 
     public List<CurriculumDTO> listAllCurriculum() {
@@ -42,10 +49,17 @@ public class CurriculumService {
 
     public MessageResponseDTO updateCurriculum(Long id, CurriculumDTO curriculumDTO) {
         verifyIfExists(id);
-        Curriculum curriculumSaved = curriculumMapper.toModel(curriculumDTO);
-        curriculumRepository.save(curriculumSaved);
+        Curriculum curriculumToSaved = curriculumMapper.toModel(curriculumDTO);
+        Curriculum curriculumSaved;
 
-        return createMessageDTO(String.format("Curriculum com ID: %o atualizado!", curriculumSaved.getId()));
+        try {
+            curriculumSaved = curriculumRepository.save(curriculumToSaved);
+            return createMessageDTO(String.format("Curriculum com ID: %o atualizado!", curriculumSaved.getId()));
+
+        }catch (DataIntegrityViolationException e) {
+            return createMessageDTO("Erro ao atualizar o curriculum!!! " + e.getMessage());
+        }
+
     }
 
     public MessageResponseDTO deleteCurriculum(Long id) {
